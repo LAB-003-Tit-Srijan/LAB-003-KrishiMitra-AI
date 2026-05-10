@@ -23,9 +23,17 @@ function TutorSidebar({
   const [loading, setLoading] = useState(false);
   const socketRef = useRef<Socket | null>(null);
 
-  useEffect(() => {
-    const socket = io(process.env.NEXT_PUBLIC_WS_URL || "http://localhost:8080");
-    socket.on("tutor:chunk", (payload: {
+ useEffect(() => {
+  const socket = io(
+    process.env.NEXT_PUBLIC_WS_URL || "http://localhost:8080",
+    {
+      transports: ["websocket"]
+    }
+  );
+
+  socket.on(
+    "tutor:chunk",
+    (payload: {
       token?: string;
       done?: boolean;
       references?: typeof refs;
@@ -36,18 +44,29 @@ function TutorSidebar({
         setOut((prev) => `${prev}\n[${payload.error}]`);
         return;
       }
+
       if (payload.done) {
         setLoading(false);
-        if (payload.references?.length) setRefs(payload.references);
+
+        if (payload.references?.length) {
+          setRefs(payload.references);
+        }
+
         return;
       }
+
       if (payload.token) {
         setOut((prev) => prev + (payload.token || ""));
       }
-    });
-    socketRef.current = socket;
-    return () => socket.disconnect();
-  }, []);
+    }
+  );
+
+  socketRef.current = socket;
+
+  return () => {
+    socket.disconnect();
+  };
+}, []);
 
   const tier = clientEffectiveTier(insight);
   const tutorOk = tierAllows(tier, "tutor");
