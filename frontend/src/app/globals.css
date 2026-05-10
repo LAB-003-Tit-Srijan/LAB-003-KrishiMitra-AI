@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #050816;
+  --bg-secondary: #0b1023;
+  --card-bg: rgba(17, 25, 40, 0.55);
+  --purple-primary: #7c3aed;
+  --purple-secondary: #9333ea;
+  --cyan-primary: #06b6d4;
+  --pink-primary: #ec4899;
+  --text-primary: #ffffff;
+  --text-secondary: #a1a1aa;
+  --border-glow: rgba(124, 58, 237, 0.35);
+}
+
+body {
+  background: radial-gradient(1200px 600px at 20% -10%, #1e1b4b 0%, transparent 50%),
+    radial-gradient(1000px 500px at 90% 10%, #155e75 0%, transparent 50%),
+    var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+}
+
+.glass {
+  background: var(--card-bg);
+  border: 1px solid var(--border-glow);
+  backdrop-filter: blur(20px);
+}
+
+.neon-border {
+  box-shadow: 0 0 30px rgba(124, 58, 237, 0.25);
+}
