@@ -94,8 +94,33 @@ export function AuthForm({ mode }: { mode: Mode }) {
           onChange={(e) => setToken(e.target.value)}
         />
       )}
-      <button className="mt-4 w-full rounded-xl bg-purple-600 py-2.5 font-medium">Continue</button>
-      {message && <p className="mt-3 text-sm text-cyan-300">{message}</p>}
+      <button className="mt-4 w-full rounded-xl bg-purple-600 py-2.5 font-medium">
+  Continue
+</button>
+
+<div className="mt-4 text-center text-sm">
+  {mode === "login" && (
+    <button
+      type="button"
+      className="text-cyan-300 underline"
+      onClick={() => router.push("/signup")}
+    >
+      Don't have an account? Register
+    </button>
+  )}
+
+  {mode === "signup" && (
+    <button
+      type="button"
+      className="text-cyan-300 underline"
+      onClick={() => router.push("/login")}
+    >
+      Already have an account? Login
+    </button>
+  )}
+</div>
+
+{message && <p className="mt-3 text-sm text-cyan-300">{message}</p>}
     </form>
   );
 }
