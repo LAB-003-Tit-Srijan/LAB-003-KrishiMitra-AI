@@ -16,6 +16,7 @@ async function bootstrap() {
   });
   app.set("io", io);
 
+  console.log("CLIENT URL =", env.clientUrl);
   app.use(cors({ origin: env.clientUrl, credentials: true }));
   app.use(express.json({ limit: "10mb" }));
   app.use(rateLimit({ windowMs: 15 * 60 * 1000, limit: 250 }));
