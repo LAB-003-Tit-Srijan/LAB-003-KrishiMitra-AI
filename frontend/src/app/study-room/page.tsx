@@ -24,7 +24,9 @@ export default function StudyRoomPage() {
       }
     );
     socketRef.current = socket;
-    return () => socket.disconnect();
+   return () => {
+  socket.disconnect();
+};
   }, []);
 
   function joinRoom() {
