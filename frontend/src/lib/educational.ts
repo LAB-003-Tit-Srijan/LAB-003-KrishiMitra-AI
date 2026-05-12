@@ -18,7 +18,7 @@ export const SOFT_EDUCATIONAL_WARNING =
 export function clientEffectiveTier(insight: EducationalInsight | null | undefined): ClientTier {
   if (!insight) return "full";
   if (insight.classification === "EDUCATIONAL") return "full";
-  const lowConfidence = insight.confidence < 45 && insight.classification !== "EDUCATIONAL";
+  const lowConfidence = insight.confidence < 45;
   if (insight.classification === "PARTIALLY_EDUCATIONAL" && !lowConfidence) return "partial";
   return "minimal";
 }
