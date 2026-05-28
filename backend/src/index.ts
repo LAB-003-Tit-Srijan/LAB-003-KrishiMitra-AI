@@ -11,13 +11,27 @@ async function bootstrap() {
   await connectDb();
   const app = express();
   const server = createServer(app);
-  const io = new Server(server, {
-    cors: { origin: env.clientUrl, credentials: true }
-  });
+  const allowedOrigins = [
+  "http://localhost:3000",
+  "https://neurolreanfrontendd.onrender.com"
+];
+
+const io = new Server(server, {
+  cors: {
+    origin: allowedOrigins,
+    credentials: true
+  }
+});
+
+app.use(
+  cors({
+    origin: allowedOrigins,
+    credentials: true
+  })
+);
   app.set("io", io);
 
-  console.log("CLIENT URL =", env.clientUrl);
-  app.use(cors({ origin: env.clientUrl, credentials: true }));
+
   app.use(express.json({ limit: "10mb" }));
   app.use(rateLimit({ windowMs: 15 * 60 * 1000, limit: 250 }));
   app.get("/health", (_req, res) => res.json({ ok: true }));
