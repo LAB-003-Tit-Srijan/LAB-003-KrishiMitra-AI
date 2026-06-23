@@ -1,6 +1,6 @@
 # NeuroLearn AI
 
-NotebookLM-style adaptive learning: **YouTube/PDF/transcript ingestion**, **RAG tutor**, **timestamp-aware chat**, **analytics**, **study rooms**, **SRS flashcards**, and **Gemini multimodal** Q&A.
+NotebookLLM-style adaptive learning: **YouTube/PDF/transcript ingestion**, **RAG tutor**, **timestamp-aware chat**, **analytics**, **study rooms**, **SRS flashcards**, and **Gemini multimodal** Q&A.
 
 ---
 
